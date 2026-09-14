@@ -282,11 +282,11 @@ AS_DEFS = \
 ${createStringList(makeInfo.asDefs, '-D')}
 
 # C defines
-C_DEFS =  ${'\\'}
+C_DEFS ?=  ${'\\'}
 ${createStringList(makeInfo.cDefs, '-D')}
 
 # CXX defines
-CXX_DEFS =  ${'\\'}
+CXX_DEFS ?=  ${'\\'}
 ${createStringList(makeInfo.cxxDefs, '-D')}
 
 # AS includes
@@ -323,7 +323,7 @@ CXXFLAGS += $(ASSEMBLER_LIST_OUTPUT_FLAG)
 # LDFLAGS
 #######################################
 # link script
-LDSCRIPT = ${makeInfo.ldscript}
+LDSCRIPT ?= ${makeInfo.ldscript}
 
 # libraries
 LIBS = ${createSingleLineStringList(makeInfo.libs, '-l')}

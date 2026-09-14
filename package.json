@@ -37,7 +37,10 @@
     "workspaceContains:*.ioc",
     "workspaceContains:STM32-for-VSCode.config.yaml",
     "onView:stm32ForVSCodeCommands",
-    "onCommand:stm32-for-vscode.openExtension"
+    "onCommand:stm32-for-vscode.openExtension",
+    "onCommand:stm32-trev.regenerateBuildFiles",
+    "onCommand:stm32-trev.buildDualBank",
+    "onCommand:stm32-trev.buildBank"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -118,6 +121,18 @@
       {
         "command": "stm32-for-vscode.setProgrammer",
         "title": "STM32: Set programmer for the STM32 chip"
+      },
+      {
+        "command": "stm32-trev.regenerateBuildFiles",
+        "title": "STM32 TREV: Regenerate Build Files"
+      },
+      {
+        "command": "stm32-trev.buildDualBank",
+        "title": "STM32 TREV: Build Dual-Bank (A+B)"
+      },
+      {
+        "command": "stm32-trev.buildBank",
+        "title": "STM32 TREV: Build One Bank"
       }
     ],
     "configuration": {
@@ -155,6 +170,7 @@
     "test": "node ./out/test/runTest.js",
     "coverage": "nyc --exclude=.vscode-test --exclude=src/test/**  npm run test",
     "test:unit": "npm run compile:test && npm run lint && TEST_ENVIRONMENT=unit node ./out/test/runTest.js",
+    "test:dualbank": "npm run compile:test && npm run lint && mocha --ui tdd --require ./src/test/vscode-stub.js --recursive out/test/unit/dualBank",
     "vscode:prepublish": "rspack --mode production && rm dist/extension.js.map",
     "compile:dev": "rspack --mode development",
     "compile:test": "tsc -p ./ ",

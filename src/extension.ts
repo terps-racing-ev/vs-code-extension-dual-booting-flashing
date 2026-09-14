@@ -33,10 +33,12 @@ import buildSTM from './BuildTask';
 import { checkBuildTools } from './buildTools';
 import importAndSetupCubeIDEProject from './import';
 import { installBuildToolsCommand } from './buildTools/installTools';
+import { registerDualBankCommands } from './dualBank';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext): { installTools: () => Promise<void> } {
+  registerDualBankCommands(context);
   // This line of code will only be executed once when your extension is
   // activated
   let commandMenu: CommandMenu | undefined = undefined;
