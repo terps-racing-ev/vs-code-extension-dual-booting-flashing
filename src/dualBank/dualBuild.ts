@@ -43,6 +43,13 @@ export interface DualBuildOptions {
   exec: Exec;
   sizeProgram: string;
   stageFile: (from: string, to: string) => Promise<void>;
+  // Directory containing the arm-none-eabi-* binaries. STM32Make.make's PATH-only fallback
+  // is `CC ?= $(ARM_PREFIX)gcc`, which GNU Make's built-in default for CC (`cc`) silently
+  // wins over — `?=` never assigns because Make already considers CC "set" (origin: default).
+  // Passing ARM_GCC_PATH takes the makefile's `ifdef ARM_GCC_PATH` branch instead, which uses
+  // a real `=` assignment and is unaffected by that gotcha. Omit only if the makefile in use
+  // doesn't have that branch.
+  armGccPath?: string;
 }
 export interface BankBuildResult {
   bankId: string; ok: boolean; budget: BudgetVerdict; artifacts: string[]; log: string;
@@ -64,6 +71,7 @@ export function buildMakeArgs(opts: DualBuildOptions, bank: Bank): string[] {
     `LDSCRIPT=${opts.bankLdRelPaths[bank.id]}`,
     `C_DEFS=${d}`,
     `CXX_DEFS=${d}`,
+    ...(opts.armGccPath ? [`ARM_GCC_PATH=${opts.armGccPath}`] : []),
   ];
 }
 

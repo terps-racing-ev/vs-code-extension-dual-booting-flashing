@@ -27,7 +27,10 @@ import { promises as fs } from 'fs';
 import * as path from 'path';
 import { spawn } from 'child_process';
 import * as YAML from 'yaml';
-import { EXTENSION_CONFIG_NAME, makefileName, MAKE_DEFAULT_CONCURRENT_JOBS } from '../Definitions';
+import {
+  EXTENSION_CONFIG_NAME, EXTENSION_NAME, makefileName, MAKE_DEFAULT_CONCURRENT_JOBS, TOOL_SETTINGS,
+} from '../Definitions';
+import { which } from '../Helpers';
 import { DualBankIo, createVsCodeIo } from './workspaceIo';
 import { parseBootloaderConfig, resolveBootloader, validateCommonDefs } from './config';
 import { planDualBankArtifacts } from './generate';
@@ -43,7 +46,9 @@ import { runDualBuild, DualBuildReport, ExecResult } from './dualBuild';
 const DUALBANK_GENERATOR_VERSION = '1.0.0';
 
 function bankLdRelPath(bankId: string): string {
-  return `linker/STM32L432XX_APP_BANK_${bankId.toUpperCase()}.ld`;
+  // Root-level filename, matching HVC-Firmware's existing hand-written
+  // STM32L432XX_APP_BANK_*.ld convention (see generate.ts).
+  return `STM32L432XX_APP_BANK_${bankId.toUpperCase()}.ld`;
 }
 
 export async function runRegenerate(
@@ -156,8 +161,28 @@ export async function runBuild(
     const bankLdRelPaths: Record<string, string> = {};
     resolved.banks.forEach((b) => { bankLdRelPaths[b.id] = bankLdRelPath(b.id); });
 
-    // No reuse of BuildTask.ts's tool resolution yet, so both programs come off PATH.
-    io.warn('stm32-trev: using make / arm-none-eabi-size from PATH');
+    // make/arm-none-eabi-size themselves still come off PATH (no reuse of BuildTask.ts's
+    // tool resolution yet), but the compiler must not: STM32Make.make's PATH-only fallback
+    // is `CC ?= $(ARM_PREFIX)gcc`, which never actually takes effect (GNU Make's built-in
+    // default for CC beats `?=`), so without this every dual-bank build silently invokes
+    // the system `cc` instead of the ARM cross-compiler. Prefer the extension's configured
+    // armToolchainPath (matches the normal single-bank build); fall back to resolving
+    // arm-none-eabi-gcc on PATH and passing its directory the same way.
+    const configuredToolchainPath = vscode.workspace
+      .getConfiguration(EXTENSION_NAME).get<string>(TOOL_SETTINGS.armToolchainPath);
+    let armGccPath: string | undefined;
+    if (configuredToolchainPath) {
+      armGccPath = configuredToolchainPath;
+      io.warn(`stm32-trev: using make from PATH; arm-none-eabi-gcc from configured armToolchainPath (${armGccPath})`);
+    } else {
+      const resolvedGcc = which('arm-none-eabi-gcc');
+      if (resolvedGcc) {
+        armGccPath = path.dirname(resolvedGcc);
+        io.warn(`stm32-trev: using make from PATH; arm-none-eabi-gcc resolved from PATH (${armGccPath})`);
+      } else {
+        io.warn('stm32-trev: arm-none-eabi-gcc not found on PATH and armToolchainPath is not configured; build will likely fail.');
+      }
+    }
 
     const report = await runDualBuild({
       projectRoot: io.projectRoot(),
@@ -172,6 +197,7 @@ export async function runBuild(
       maxImageWarnPct: resolved.maxImageWarnPct,
       concurrency: MAKE_DEFAULT_CONCURRENT_JOBS,
       sizeProgram: 'arm-none-eabi-size',
+      armGccPath,
       exec: execSpawn,
       stageFile: async (from: string, to: string): Promise<void> => {
         const root = io.projectRoot();

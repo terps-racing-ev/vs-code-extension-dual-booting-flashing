@@ -50,7 +50,10 @@ export function planDualBankArtifacts(inputs: GenerationInputs): GenerationResul
 
   for (const bank of resolved.banks) {
     const label = bank.id.toUpperCase();
-    const relPath = `linker/STM32L432XX_APP_BANK_${label}.ld`;
+    // Root-level, matching HVC-Firmware's existing hand-written STM32L432XX_APP_BANK_*.ld
+    // naming/location (dual_build.mk) so this generator is a drop-in for that convention,
+    // not a parallel one in a linker/ subfolder.
+    const relPath = `STM32L432XX_APP_BANK_${label}.ld`;
     const body = transformLinkerScript(baseLinkerScript, bank, resolved.storage, label);
     const bodyHash = hashInputs([body]);
     const header = buildSentinelHeader('/*', version, bodyHash);

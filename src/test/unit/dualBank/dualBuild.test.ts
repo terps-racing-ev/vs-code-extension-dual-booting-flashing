@@ -12,7 +12,7 @@ function baseOpts(over: Partial<DualBuildOptions> = {}): DualBuildOptions {
   return {
     projectRoot: '/proj', makeProgram: 'make', makefileName: 'STM32Make.make',
     banks, targetBaseName: 'HVC', commonDefs: ['STM32L432xx', 'USE_HAL_DRIVER'],
-    bankLdRelPaths: { a: 'linker/STM32L432XX_APP_BANK_A.ld', b: 'linker/STM32L432XX_APP_BANK_B.ld' },
+    bankLdRelPaths: { a: 'STM32L432XX_APP_BANK_A.ld', b: 'STM32L432XX_APP_BANK_B.ld' },
     outputDir: 'build/dist', maxImageBytes: 106496, maxImageWarnPct: 90, concurrency: 8,
     sizeProgram: 'arm-none-eabi-size',
     exec: async (cmd: string) => {
@@ -32,7 +32,7 @@ suite('dual build runner', () => {
     expect(args).to.include('-f'); expect(args).to.include('STM32Make.make');
     expect(args).to.include('TARGET=HVC_b');
     expect(args).to.include('BUILD_DIRECTORY=build/bank_b');
-    expect(args).to.include('LDSCRIPT=linker/STM32L432XX_APP_BANK_B.ld');
+    expect(args).to.include('LDSCRIPT=STM32L432XX_APP_BANK_B.ld');
     expect(args.find((a) => a.startsWith('C_DEFS='))).to.contain('-DVECT_TAB_OFFSET=0x22000');
     expect(args.find((a) => a.startsWith('C_DEFS='))).to.contain('-DUSE_HAL_DRIVER');
   });

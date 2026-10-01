@@ -40,7 +40,7 @@ const CONFIG =
 const CONFIG_PATH = 'STM32-for-VSCode.config.yaml';
 const BASE_LD_PATH = 'STM32L432XX_FLASH.ld';
 const MAIN_C_PATH = 'Core/Src/main.c';
-const BANK_B_LD_PATH = 'linker/STM32L432XX_APP_BANK_B.ld';
+const BANK_B_LD_PATH = 'STM32L432XX_APP_BANK_B.ld';
 
 suite('dual-bank commands', () => {
   test('regenerate writes both bank scripts and a tasks.json', async () => {
@@ -50,8 +50,8 @@ suite('dual-bank commands', () => {
       [MAIN_C_PATH]: 'SCB->VTOR = FLASH_BASE | VECT_TAB_OFFSET;',
     });
     const res = await runRegenerate(io, '0.1.0');
-    expect(res.wrote).to.include('linker/STM32L432XX_APP_BANK_A.ld');
-    expect(res.wrote).to.include('linker/STM32L432XX_APP_BANK_B.ld');
+    expect(res.wrote).to.include('STM32L432XX_APP_BANK_A.ld');
+    expect(res.wrote).to.include('STM32L432XX_APP_BANK_B.ld');
     expect(res.wrote).to.include('.vscode/tasks.json');
     expect(io.files[BANK_B_LD_PATH]).to.contain('ORIGIN = 0x08022000');
     expect(res.warnings).to.deep.equal([]);
