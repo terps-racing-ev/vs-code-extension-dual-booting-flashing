@@ -1,3 +1,7 @@
+/**
+ * Shared path, process, and workspace helpers used by the build and setup flows.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as path from 'path';
 const { platform } = process;
 import {sync} from 'which';

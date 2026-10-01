@@ -1,6 +1,10 @@
 /**
  * Handles the environment file used by STM32 for VSCode's makefile for setting up things like the compiler
  */
+/**
+ * Reads and writes project-local overrides for tool and build paths.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { EXTENSION_NAME, STM32_ENVIRONMENT_FILE_NAME, makefileName } from '../Definitions';
 import { ToolChain } from '../types/MakeInfo';
 import { writeFileInWorkspace, getWorkspaceUri } from '../Helpers';

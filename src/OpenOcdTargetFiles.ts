@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/**
+ * Maps STM32 device names to the corresponding OpenOCD target configuration.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { trimEnd } from 'lodash';
 
 const configFiles = [

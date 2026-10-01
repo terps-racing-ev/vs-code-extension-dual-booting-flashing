@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/**
+ * Shared data shapes for flash regions, application banks, and bootloader presets.
+ * It supplies the implementation used by this part of the extension.
+ */
 export interface MemoryRegion { name: string; origin: number; lengthBytes: number; }
 export interface Bank { id: string; origin: number; lengthBytes: number; vectorTableOffset: number; }
 export interface Preset {

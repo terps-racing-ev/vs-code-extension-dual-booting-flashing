@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/**
+ * Stores known flash layouts for supported bootloaders; each layout defines banks and reserved areas.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { Preset } from './types';
 
 const stm32l432CanBootloader: Preset = {

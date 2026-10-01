@@ -1,3 +1,7 @@
+/**
+ * Creates Cortex-Debug launch settings from the selected STM32 and OpenOCD configuration.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { ConfigurationTarget, workspace } from 'vscode';
 
 import MakeInfo from '../types/MakeInfo';

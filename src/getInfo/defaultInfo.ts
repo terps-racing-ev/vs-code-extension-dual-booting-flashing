@@ -1,4 +1,8 @@
 
+/**
+ * Supplies default compiler flags and library settings when a project omits them.
+ * It supplies the implementation used by this part of the extension.
+ */
 import MakeInfo from '../types/MakeInfo';
 
 const defaults: Partial<MakeInfo> = {

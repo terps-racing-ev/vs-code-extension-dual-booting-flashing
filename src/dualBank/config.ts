@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/**
+ * Reads the optional bootloader settings and combines them with the selected hardware preset. Project overrides replace individual preset values, and required compiler defines are checked before generation.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as YAML from 'yaml';
 import { Bank, MemoryRegion, Preset } from './types';
 import { resolvePreset } from './presets';

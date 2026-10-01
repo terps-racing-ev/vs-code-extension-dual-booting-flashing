@@ -1,3 +1,7 @@
+/**
+ * OpenOCD interface configuration names available in the programmer selector.
+ * It supplies the implementation used by this part of the extension.
+ */
 export const standardInterfaceFiles: string[] = [
   "altera-usb-blaster",
   "altera-usb-blaster2",

@@ -1,3 +1,7 @@
+/**
+ * Reads preprocessor definitions from project definition files.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { workspace, Uri, window } from 'vscode';
 import * as stripComments from 'strip-comments';
 import { join } from 'path';

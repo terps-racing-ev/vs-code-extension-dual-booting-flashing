@@ -1,3 +1,7 @@
+/**
+ * Reads Eclipse .cproject build settings and converts compiler and linker options to extension settings.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { Uri, workspace } from 'vscode';
 import * as path from 'path';
 import { scanForFiles } from "../getFiles";

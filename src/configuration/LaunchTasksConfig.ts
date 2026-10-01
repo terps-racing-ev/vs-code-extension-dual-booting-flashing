@@ -1,3 +1,7 @@
+/**
+ * Builds the VS Code tasks used to attach a debugger to an STM32 target.
+ * It supplies the implementation used by this part of the extension.
+ */
 import MakefileInfo from '../types/MakeInfo';
 import { TaskDefinition } from 'vscode';
 

@@ -23,6 +23,10 @@
 */
 
 
+/**
+ * Parses GNU size output and compares a bank image against its flash capacity. The budget check counts flash-resident sections and reports when an image is close to or over its limit.
+ * It supplies the implementation used by this part of the extension.
+ */
 export interface SectionSizes { text: number; data: number; bss: number; }
 
 export interface BudgetVerdict {

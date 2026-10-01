@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/**
+ * Connects the dual-bank generator and build pipeline to VS Code commands and workspace files. It coordinates config loading, generated artifacts, validation messages, and per-bank builds.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as vscode from 'vscode';
 import { promises as fs } from 'fs';
 import * as path from 'path';

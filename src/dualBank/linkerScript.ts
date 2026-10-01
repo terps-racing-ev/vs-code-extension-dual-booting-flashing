@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/**
+ * Rewrites a CubeMX linker script so an application image occupies one selected flash bank. It keeps the RAM layout and assigns the requested bank and storage flash regions.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { Bank, MemoryRegion } from './types';
 
 export class LinkerScriptFormatError extends Error {}

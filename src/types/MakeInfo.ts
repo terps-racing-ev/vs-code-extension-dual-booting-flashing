@@ -1,5 +1,9 @@
 
 
+/**
+ * Data models for parsed project settings and the extension’s YAML configuration.
+ * It supplies the implementation used by this part of the extension.
+ */
 export interface Stm32SettingsInterface {
   armToolchainPath: string;
   openOCDPath: string;

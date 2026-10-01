@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/**
+ * Checks that startup code moves the Cortex-M vector table to the bank being built. It warns when a known hard-coded bank address could override the per-build vector-table offset.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { Bank } from './types';
 
 export interface VtorSourceFile { path: string; content: string; }
@@ -45,14 +49,13 @@ function originPattern(origin: number): RegExp {
 
 export function checkVtor(sources: VtorSourceFile[], banks: Bank[]): VtorCheckResult {
   const all = sources.map((s) => s.content).join('\n');
-  if (/SCB->VTOR\s*=\s*(?:FLASH_BASE|VECT_TAB_BASE_ADDRESS)\s*\|\s*VECT_TAB_OFFSET/.test(all)) {
-    return { ok: true, level: 'ok', message: '', snippet: '' };
-  }
+  const usesPerBankOffset =
+    /SCB->VTOR\s*=\s*(?:FLASH_BASE|VECT_TAB_BASE_ADDRESS)\s*\|\s*VECT_TAB_OFFSET/.test(all);
   const matchedBanks = banks.filter((b) => originPattern(b.origin).test(all));
   if (banks.length > 0 && matchedBanks.length === banks.length) {
     return { ok: true, level: 'ok', message: '', snippet: '' };
   }
-  if (matchedBanks.length === 1) {
+  if (matchedBanks.length > 0) {
     return {
       ok: false,
       level: 'warning',
@@ -62,6 +65,7 @@ export function checkVtor(sources: VtorSourceFile[], banks: Bank[]): VtorCheckRe
       snippet: SNIPPET,
     };
   }
+  if (usesPerBankOffset) { return { ok: true, level: 'ok', message: '', snippet: '' }; }
   return {
     ok: false,
     level: 'warning',

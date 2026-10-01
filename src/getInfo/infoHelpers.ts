@@ -1,3 +1,7 @@
+/**
+ * Helpers for combining extracted build settings and reconciling C and C++ sources.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { isEmpty, cloneDeep, set, uniq } from 'lodash';
 import * as vscode from 'vscode';
 

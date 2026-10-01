@@ -1,3 +1,7 @@
+/**
+ * Checks tool paths from settings and the system PATH, then reports what is missing.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as path from 'path';
 import * as process from 'process';
  

@@ -1,3 +1,7 @@
+/**
+ * Reads and writes the YAML file that controls source discovery and STM32 build options.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as Helpers from '../Helpers';
 import * as YAML from 'yaml';
 import * as path from 'path';

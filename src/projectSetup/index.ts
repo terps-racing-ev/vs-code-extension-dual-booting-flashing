@@ -1,3 +1,7 @@
+/**
+ * Guides users through first-time workspace setup when required STM32 project files are missing.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as Helpers from '../Helpers';
 import * as OpenOCDConfig from '../configuration/openOCDConfig';
 import * as vscode from 'vscode';

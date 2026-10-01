@@ -27,6 +27,10 @@
  * Created by Jort Band - Bureau Moeilijke Dingen
 */
 
+/**
+ * Combines CubeMX build settings, project files, and extension configuration into MakeInfo.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as Micromatch from 'micromatch';
 import * as OpenOCDConfigFile from '../configuration/openOCDConfig';
 import * as STM32ProjectConfiguration from '../configuration/stm32Config';

@@ -1,3 +1,7 @@
+/**
+ * Defines the command tree shown in the STM32 sidebar and connects entries to commands.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as vscode from "vscode";
 import { forEach } from "lodash";
 

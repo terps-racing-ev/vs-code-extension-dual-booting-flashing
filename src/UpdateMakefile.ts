@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/**
+ * Reads and writes the generated STM32Make.make file in the workspace.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as path from 'path';
 
 import { Uri, workspace } from 'vscode';

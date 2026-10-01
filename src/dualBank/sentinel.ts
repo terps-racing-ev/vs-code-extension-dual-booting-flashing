@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/**
+ * Creates and checks generated-file headers so regeneration can recognize hand-edited output.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { createHash } from 'crypto';
 
 const HASH_MARKER = 'stm32-trev-inputs-sha256:';

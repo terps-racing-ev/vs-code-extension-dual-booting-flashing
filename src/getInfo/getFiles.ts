@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/**
+ * Finds and classifies project source/header files and derives compiler include directories.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { set, uniq, flattenDeep, intersection, forEach } from 'lodash';
 import * as pth from 'path';
 import * as vscode from 'vscode';

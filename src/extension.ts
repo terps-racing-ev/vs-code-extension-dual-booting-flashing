@@ -24,6 +24,10 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 
+/**
+ * Extension activation: registers commands, checks tool availability, and initializes the sidebar.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as OpenOCDConfig from './configuration/openOCDConfig';
 import * as vscode from 'vscode';
 

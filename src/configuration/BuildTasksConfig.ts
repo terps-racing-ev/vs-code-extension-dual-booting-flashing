@@ -1,3 +1,7 @@
+/**
+ * Defines VS Code tasks for build, clean, and flash commands.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { TaskDefinition } from 'vscode';
 
 /**

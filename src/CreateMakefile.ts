@@ -29,6 +29,10 @@
  * Created by Jort Band - Bureau Moeilijke Dingen
 */
 
+/**
+ * Builds the extension’s Makefile text from discovered project files and compiler settings.
+ * It supplies the implementation used by this part of the extension.
+ */
 import 'process';
 
 import { isEmpty, isString, uniq } from 'lodash';

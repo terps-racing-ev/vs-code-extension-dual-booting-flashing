@@ -1,3 +1,7 @@
+/**
+ * Lists MCU and CPU choices used by project setup prompts.
+ * It supplies the implementation used by this part of the extension.
+ */
 export const targetsMCUs = [
   'stm32f0x',
   'stm32f1x',

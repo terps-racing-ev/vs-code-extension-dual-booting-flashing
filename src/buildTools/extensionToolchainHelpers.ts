@@ -1,3 +1,7 @@
+/**
+ * Validates installed xPack tool folders and picks the newest compatible version.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as path from 'path';
 import * as vscode from 'vscode';
 

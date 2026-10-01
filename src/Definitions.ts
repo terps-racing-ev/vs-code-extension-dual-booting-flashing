@@ -21,6 +21,10 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
+/**
+ * Central names and defaults shared by build, configuration, and tool installation code.
+ * It supplies the implementation used by this part of the extension.
+ */
 export const makefileName = 'STM32Make.make';
 export const ignoreFileName = '.stm32ignore';
 export const EXTENSION_CONFIG_NAME = 'STM32-for-VSCode.config.yaml';

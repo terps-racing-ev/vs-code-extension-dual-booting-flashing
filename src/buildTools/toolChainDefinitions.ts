@@ -1,3 +1,7 @@
+/**
+ * Names, package identifiers, and install locations for supported build tools.
+ * It supplies the implementation used by this part of the extension.
+ */
 // import { ToolChain } from '../types/MakeInfo';
 
 import * as process from 'process';

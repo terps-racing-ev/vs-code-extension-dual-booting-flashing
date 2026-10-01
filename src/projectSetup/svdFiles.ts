@@ -1,4 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+/**
+ * Finds and downloads CMSIS-SVD device descriptions used by the debugger.
+ * It supplies the implementation used by this part of the extension.
+ */
 import axios from 'axios';
 import * as nearestString from 'nearest-string';
 

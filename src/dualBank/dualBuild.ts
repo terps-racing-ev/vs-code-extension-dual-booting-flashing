@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/**
+ * Builds each selected bank with its own linker script, checks image size, and stages output artifacts.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { Bank } from './types';
 import { parseSizeOutput, evaluateBudget, BudgetVerdict } from './sizeReport';
 

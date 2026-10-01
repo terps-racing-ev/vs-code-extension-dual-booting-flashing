@@ -1,3 +1,7 @@
+/**
+ * Finds startup assembly files and extracts startup information needed during import.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { scanForFiles } from "../getFiles";
 import { workspace, Uri } from 'vscode';
 import * as path from 'path';

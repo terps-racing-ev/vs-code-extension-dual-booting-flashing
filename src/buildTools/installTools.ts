@@ -1,3 +1,7 @@
+/**
+ * Downloads and installs the Node-based package runner and STM32 build tools.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as decompress from 'decompress';
 import * as path from 'path';
 import * as process from 'process';

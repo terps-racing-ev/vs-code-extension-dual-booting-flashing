@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/**
+ * Adapts VS Code workspace file operations and messages to the dual-bank pipeline interface.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as vscode from 'vscode';
 import * as path from 'path';
 
@@ -59,8 +63,11 @@ export function createVsCodeIo(): DualBankIo {
       await vscode.workspace.fs.writeFile(abs(rel), Buffer.from(content, 'utf8'));
     },
     async listSourceFiles(): Promise<string[]> {
-      const found = await vscode.workspace.findFiles('Core/Src/**/*.{c,cpp,cc}');
-      return found.map((u) => path.relative(root, u.fsPath));
+      const found = await Promise.all([
+        vscode.workspace.findFiles('Core/Src/**/*.{c,cpp,cc}'),
+        vscode.workspace.findFiles('Src/**/*.{c,cpp,cc}'),
+      ]);
+      return [...new Set(found.flat().map((u) => path.relative(root, u.fsPath)))];
     },
     info: (m: string): void => { void vscode.window.showInformationMessage(m); },
     warn: (m: string): void => { void vscode.window.showWarningMessage(m); },

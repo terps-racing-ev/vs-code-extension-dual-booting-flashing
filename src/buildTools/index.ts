@@ -1,3 +1,7 @@
+/**
+ * Coordinates build-tool detection and configures Cortex-Debug with the discovered tools.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as path from 'path';
 import * as toolChainValidation from './validateToolchain';
 import * as vscode from 'vscode';

@@ -27,6 +27,10 @@
  * tasks.
  */
 
+/**
+ * Creates or updates VS Code launch and task files for building and debugging.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { TaskDefinition, Uri, WorkspaceConfiguration, workspace } from 'vscode';
 import getLaunchTask, { getAttachTask } from './LaunchTasksConfig';
 

@@ -1,3 +1,7 @@
+/**
+ * Checks whether the open folder contains the files needed for STM32 project setup.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as Helpers from '../Helpers';
 import * as path from 'path';
 import * as vscode from 'vscode';

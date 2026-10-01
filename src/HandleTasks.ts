@@ -1,3 +1,7 @@
+/**
+ * Runs VS Code tasks used to invoke Make and report compiler output.
+ * It supplies the implementation used by this part of the extension.
+ */
 import {
   ShellExecution,
   Task,

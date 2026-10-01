@@ -36,6 +36,16 @@ suite('vtor check', () => {
     expect(r.snippet).to.contain('FLASH_BASE | VECT_TAB_OFFSET');
   });
 
+  test('warns when a hard-coded bank assignment coexists with the offset-based assignment', () => {
+    const content = [
+      'SCB->VTOR = VECT_TAB_BASE_ADDRESS | VECT_TAB_OFFSET;',
+      'SCB->VTOR = 0x08008000U;',
+    ].join('\n');
+    const r = checkVtor([{ path: 'system.c', content }], banks);
+    expect(r.ok).to.equal(false);
+    expect(r.message).to.contain('hard-coded to one bank');
+  });
+
   test('warns when there is no SCB->VTOR at all', () => {
     const r = checkVtor([{ path: 'main.c', content: 'int main(){}' }], banks);
     expect(r.ok).to.equal(false);

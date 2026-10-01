@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/**
+ * Adds the extension’s build tasks while preserving unrelated tasks already in tasks.json. The merge replaces existing TREV task labels so repeated regeneration does not duplicate entries.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as stripComments from 'strip-comments';
 
 interface VsTask { label?: string; [k: string]: unknown; }

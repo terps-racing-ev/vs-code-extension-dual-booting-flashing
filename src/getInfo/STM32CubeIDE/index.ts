@@ -1,3 +1,7 @@
+/**
+ * Public entry points for extracting build information from STM32CubeIDE project files.
+ * It supplies the implementation used by this part of the extension.
+ */
 import MakeInfo from "../../types/MakeInfo";
 import getCubeIDECProjectFileInfo from "./cProject";
 import getCubeIDEProjectFileInfo from "./project";

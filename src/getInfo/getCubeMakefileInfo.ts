@@ -38,6 +38,10 @@
  * Created by Jort Band- Bureau Moeilijke Dingen
  */
 
+/**
+ * Extracts MCU, compiler, source, include, and linker settings from a CubeMX Makefile.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { Uri, workspace } from 'vscode';
 
 import MakeInfo from '../types/MakeInfo';

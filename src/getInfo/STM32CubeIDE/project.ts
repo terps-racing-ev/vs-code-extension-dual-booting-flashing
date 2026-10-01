@@ -1,3 +1,7 @@
+/**
+ * Reads CubeIDE project metadata and gathers the project’s source-file paths.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { workspace, Uri, window } from "vscode";
 import { parseStringPromise } from "xml2js";
 import { scanForFiles } from "../getFiles";

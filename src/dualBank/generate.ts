@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/**
+ * Plans bank linker scripts and records a hash used to detect later manual edits. The plan is kept separate from file writes so generation decisions can be reviewed and tested.
+ * It supplies the implementation used by this part of the extension.
+ */
 import { transformLinkerScript } from './linkerScript';
 import { buildSentinelHeader, hashInputs, isHandEdited } from './sentinel';
 import { ResolvedBootloader } from './config';

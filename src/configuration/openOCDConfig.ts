@@ -1,3 +1,7 @@
+/**
+ * Reads, writes, and updates the workspace OpenOCD configuration.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as Helpers from '../Helpers';
 import * as path from 'path';
 import * as vscode from 'vscode';

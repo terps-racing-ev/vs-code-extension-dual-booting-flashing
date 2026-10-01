@@ -1,3 +1,7 @@
+/**
+ * Imports STM32CubeIDE project settings into the extension’s workspace configuration.
+ * It supplies the implementation used by this part of the extension.
+ */
 import getCubeProjectInfo from './getInfo/STM32CubeIDE';
 import setDefaults from './getInfo/defaultInfo';
 import { ExtensionConfiguration } from './types';

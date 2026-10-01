@@ -1,3 +1,7 @@
+/**
+ * Generates c_cpp_properties.json so IntelliSense uses the project’s compiler flags and headers.
+ * It supplies the implementation used by this part of the extension.
+ */
 import * as path from 'path';
  
 

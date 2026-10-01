@@ -22,6 +22,10 @@
  * SOFTWARE.
  */
 
+/**
+ * Reads the extension’s configured paths for Make, OpenOCD, and the ARM toolchain.
+ * It supplies the implementation used by this part of the extension.
+ */
 import {isEmpty, isString} from 'lodash';
 
 import { ToolChain } from '../types/MakeInfo';
